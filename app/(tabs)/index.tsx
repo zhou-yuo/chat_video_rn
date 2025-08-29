@@ -7,7 +7,7 @@ import { Text, View, XStack, YStack, useTheme } from "tamagui";
 function MessageScreen() {
   const theme = useTheme();
   const borderColor = theme.borderColor.get();
-  const bgColor = theme.background.get()
+  const bgColor = theme.background.get();
 
   return (
     <SafeAreaView style={{ backgroundColor: bgColor, flex: 1 }}>
@@ -27,10 +27,15 @@ function MessageScreen() {
           </XStack>
 
           <YStack style={styles.navBarTitle}>
-            <Text fontSize={16} fontWeight="bold" numberOfLines={1} color="$color">
+            <Text
+              fontSize={16}
+              fontWeight="bold"
+              numberOfLines={1}
+              color="$color"
+            >
               主标题
             </Text>
-            <Text fontSize={10} numberOfLines={1} color="$colorHint">
+            <Text fontSize={10} numberOfLines={1} color="$placeholderColor">
               副标题
             </Text>
           </YStack>
@@ -52,6 +57,10 @@ function MessageScreen() {
 
       <View style={{ flex: 1 }}>
         <Text>MessageScreen</Text>
+
+        <YStack bg="$background" p="$4">
+          <Text color="$color">This is accent theme</Text>
+        </YStack>
       </View>
     </SafeAreaView>
   );

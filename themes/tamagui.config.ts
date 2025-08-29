@@ -1,26 +1,16 @@
 import { defaultConfig } from '@tamagui/config/v4';
-import { createTamagui } from '@tamagui/core';
-import { dark, light, tokens } from './themes';
+import { createTamagui } from 'tamagui';
+import { themes, tokens } from './themes';
 
 const config = createTamagui({
   ...defaultConfig,
   // fonts,
   tokens,
-  themes: {
-    ...defaultConfig.themes, 
-    light: {
-      ...defaultConfig.themes.light, 
-      ...light
-    },
-    dark: {
-      ...defaultConfig.themes.dark, 
-      ...dark
-    }
-  },
+  themes
   // ... 其他配置, 如 media queries, shorthands
 })
 
-// 5. (重要!) 类型导出，为了自动补全
+// (重要!) 类型导出，为了自动补全
 type Conf = typeof config
 declare module '@tamagui/core' {
   interface TamaguiCustomConfig extends Conf {}

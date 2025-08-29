@@ -1,99 +1,228 @@
-import { createTokens } from '@tamagui/core';
+import * as Colors from "@tamagui/colors";
+import { createThemes, defaultComponentThemes } from "@tamagui/theme-builder";
+import { createTokens } from "tamagui";
 
 export const color = {
   // 定义你的品牌色
-  brand: '#1890ff',
-  brandLight: '#40a9ff',
-  brandDark: '#096dd9',
+  brand: "#1890ff",
+  brandLight: "#40a9ff",
+  brandDark: "#096dd9",
 
   // 定义你的中性色/灰色调
-  gray900: '#262626',
-  gray800: '#434343',
-  gray700: '#595959',
-  gray600: '#8c8c8c',
-  gray500: '#bfbfbf',
-  gray400: '#d9d9d9',
-  gray300: '#f0f0f0',
-  gray200: '#f5f5f5',
-  gray100: '#fafafa',
-  white: '#fff',
-  black: '#000',
+  gray900: "#262626",
+  gray800: "#434343",
+  gray700: "#595959",
+  gray600: "#8c8c8c",
+  gray500: "#bfbfbf",
+  gray400: "#d9d9d9",
+  gray300: "#f0f0f0",
+  gray200: "#f5f5f5",
+  gray100: "#fafafa",
+  white: "#fff",
+  black: "#000",
 
-  red: '#f5222d',
-  green: '#52c41a',
-  blue: '#1677ff',
-  yellow: '#fadb14',
-  gold: '#faad14',
-  orange: '#fa8c16',
-  lime: '#a0d911',
-  purple: '#722ed1',
-  cyan: '#13c2c2',
-}
-
-export const dark = {
-  // Standard keys for all components
-  background: '#000',
-  backgroundHover: '#111',
-  backgroundPress: '#222',
-  backgroundFocus: '#333',
-  backgroundStrong: '#444',
-  backgroundTransparent: 'rgba(0, 0, 0, 0.5)',
-  color: '#fff',
-  colorHint: '#999',
-  colorHover: '#eee',
-  colorPress: '#ddd',
-  colorFocus: '#ccc',
-  colorTransparent: 'rgba(255, 255, 255, 0.5)',
-  borderColor: '#555',
-  borderColorHover: '#666',
-  borderColorFocus: '#777',
-  borderColorPress: '#888',
-  placeholderColor: '#999',
-  outlineColor: '#aaa',
-  // Custom tokens like "brand"
-  brandBackground: '#fff', // You can add your own tokens like "brand"
-  brandColor: color.brand, // and use them in your components
-}
-
-export const light = {
-  // Standard keys for all components
-  background: '#fff',
-  backgroundHover: '#f5f5f5',
-  backgroundPress: '#e0e0e0',
-  backgroundFocus: '#d5d5d5',
-  backgroundStrong: '#ccc',
-  backgroundTransparent: 'rgba(255, 255, 255, 0.5)',
-  color: '#000',
-  colorHint: '#999',
-  colorHover: '#111',
-  colorPress: '#222',
-  colorFocus: '#333',
-  colorTransparent: 'rgba(0, 0, 0, 0.5)',
-  borderColor: '#eee',
-  borderColorHover: '#555',
-  borderColorFocus: '#666',
-  borderColorPress: '#777',
-  placeholderColor: '#888',
-  outlineColor: '#999',
-  // Custom tokens like "brand"
-  brandBackground: '#000', // You can add your own tokens like "brand"
-  brandColor: color.brand, // and use them in your components
-}
+  red: "#f5222d",
+  green: "#52c41a",
+  blue: "#1677ff",
+  yellow: "#fadb14",
+  gold: "#faad14",
+  orange: "#fa8c16",
+  lime: "#a0d911",
+  purple: "#722ed1",
+  cyan: "#13c2c2",
+};
 
 export const tokens = createTokens({
-  color,
-  radius: { 0: 0, 1: 3, 2: 5, 3: 10 },
-  space: { 0: 0, 1: 4, 2: 8, 3: 12, 4: 16 },
-  size: { 
-    small: 12,
-    medium: 14,
-    large: 18,
-    0: 10,
-    1: 12,
-    $true: 14,// $true 或默认大小通常被设置为这个值
-    3: 16, 
-    4: 18,
-    5: 20,
+  // color,
+  space: {
+    0: 0,
+    1: 2,
+    2: 4,
+    3: 8,
+    true: 2,
+    4: 12,
+    5: 16,
   },
-})
+  radius: {
+    0: 0,
+    1: 2,
+    true: 2,
+    2: 4,
+    3: 8,
+    4: 12,
+    5: 16,
+  },
+  zIndex: { 0: 0, 1: 100, true: 100, 2: 200, 3: 300, 4: 400, 5: 500 },
+  size: {
+    0: 12,
+    1: 14,
+    true: 14,
+    2: 18,
+  },
+});
 
+const darkPalette = [
+  "hsla(0, 0%, 10%, 1)",
+  "hsla(0, 0%, 14%, 1)",
+  "hsla(0, 0%, 19%, 1)",
+  "hsla(0, 0%, 23%, 1)",
+  "hsla(0, 0%, 28%, 1)",
+  "hsla(0, 0%, 32%, 1)",
+  "hsla(0, 0%, 37%, 1)",
+  "hsla(0, 0%, 41%, 1)",
+  "hsla(0, 0%, 46%, 1)",
+  "hsla(0, 0%, 50%, 1)",
+  "hsla(0, 15%, 93%, 1)",
+  "hsla(0, 15%, 99%, 1)",
+];
+const lightPalette = [
+  "hsla(0, 0%, 100%, 1)",
+  "hsla(0, 0%, 94%, 1)",
+  "hsla(0, 0%, 89%, 1)",
+  "hsla(0, 0%, 83%, 1)",
+  "hsla(0, 0%, 78%, 1)",
+  "hsla(0, 0%, 72%, 1)",
+  "hsla(0, 0%, 67%, 1)",
+  "hsla(0, 0%, 61%, 1)",
+  "hsla(0, 0%, 56%, 1)",
+  "hsla(0, 0%, 50%, 1)",
+  "hsla(0, 15%, 15%, 1)",
+  "hsla(0, 15%, 1%, 1)",
+];
+
+const lightShadows = {
+  shadow1: "rgba(0,0,0,0.04)",
+  shadow2: "rgba(0,0,0,0.08)",
+  shadow3: "rgba(0,0,0,0.16)",
+  shadow4: "rgba(0,0,0,0.24)",
+  shadow5: "rgba(0,0,0,0.32)",
+  shadow6: "rgba(0,0,0,0.4)",
+};
+
+const darkShadows = {
+  shadow1: "rgba(0,0,0,0.2)",
+  shadow2: "rgba(0,0,0,0.3)",
+  shadow3: "rgba(0,0,0,0.4)",
+  shadow4: "rgba(0,0,0,0.5)",
+  shadow5: "rgba(0,0,0,0.6)",
+  shadow6: "rgba(0,0,0,0.7)",
+};
+
+// we're adding some example sub-themes for you to show how they are done, "success" "warning", "error":
+
+const builtThemes = createThemes({
+  componentThemes: defaultComponentThemes,
+
+  base: {
+    palette: {
+      dark: darkPalette,
+      light: lightPalette,
+    },
+
+    extra: {
+      light: {
+        ...Colors.green,
+        ...Colors.red,
+        ...Colors.yellow,
+        ...lightShadows,
+        shadowColor: lightShadows.shadow1,
+      },
+      dark: {
+        ...Colors.greenDark,
+        ...Colors.redDark,
+        ...Colors.yellowDark,
+        ...darkShadows,
+        shadowColor: darkShadows.shadow1,
+      },
+    },
+  },
+
+  accent: {
+    palette: {
+      dark: [
+        "hsla(250, 50%, 35%, 1)",
+        "hsla(250, 50%, 38%, 1)",
+        "hsla(250, 50%, 41%, 1)",
+        "hsla(250, 50%, 43%, 1)",
+        "hsla(250, 50%, 46%, 1)",
+        "hsla(250, 50%, 49%, 1)",
+        "hsla(250, 50%, 52%, 1)",
+        "hsla(250, 50%, 54%, 1)",
+        "hsla(250, 50%, 57%, 1)",
+        "hsla(250, 50%, 60%, 1)",
+        "hsla(250, 50%, 90%, 1)",
+        "hsla(250, 50%, 95%, 1)",
+      ],
+      light: [
+        "hsla(250, 50%, 40%, 1)",
+        "hsla(250, 50%, 43%, 1)",
+        "hsla(250, 50%, 46%, 1)",
+        "hsla(250, 50%, 48%, 1)",
+        "hsla(250, 50%, 51%, 1)",
+        "hsla(250, 50%, 54%, 1)",
+        "hsla(250, 50%, 57%, 1)",
+        "hsla(250, 50%, 59%, 1)",
+        "hsla(250, 50%, 62%, 1)",
+        "hsla(250, 50%, 65%, 1)",
+        "hsla(250, 50%, 95%, 1)",
+        "hsla(250, 50%, 95%, 1)",
+      ],
+    },
+  },
+
+  childrenThemes: {
+    warning: {
+      palette: {
+        dark: Object.values(Colors.yellowDark),
+        light: Object.values(Colors.yellow),
+      },
+    },
+
+    error: {
+      palette: {
+        dark: Object.values(Colors.redDark),
+        light: Object.values(Colors.red),
+      },
+    },
+
+    success: {
+      palette: {
+        dark: Object.values(Colors.greenDark),
+        light: Object.values(Colors.green),
+      },
+    },
+  },
+
+  // optionally add more, can pass palette or template
+
+  // grandChildrenThemes: {
+  //   alt1: {
+  //     template: 'alt1',
+  //   },
+  //   alt2: {
+  //     template: 'alt2',
+  //   },
+  //   surface1: {
+  //     template: 'surface1',
+  //   },
+  //   surface2: {
+  //     template: 'surface2',
+  //   },
+  //   surface3: {
+  //     template: 'surface3',
+  //   },
+  // },
+});
+
+export type Themes = typeof builtThemes;
+
+// the process.env conditional here is optional but saves web client-side bundle
+// size by leaving out themes JS. tamagui automatically hydrates themes from CSS
+// back into JS for you, and the bundler plugins set TAMAGUI_ENVIRONMENT. so
+// long as you are using the Vite, Next, Webpack plugins this should just work,
+// but if not you can just export builtThemes directly as themes:
+export const themes: Themes =
+  process.env.TAMAGUI_ENVIRONMENT === "client" &&
+  process.env.NODE_ENV === "production"
+    ? ({} as any)
+    : (builtThemes as any);
