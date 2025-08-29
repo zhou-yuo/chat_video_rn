@@ -1,5 +1,5 @@
 import useCommonStore from "@/stores/useCommonStore";
-import tamaguiConfig from "@/themes/tamagui.config"; // 你的 Tamagui 配置文件
+import tamaguiConfig from "@/tamagui.config"; // 你的 Tamagui 配置文件
 import { TamaguiProvider } from "@tamagui/core";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";

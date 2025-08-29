@@ -1,6 +1,6 @@
 import { defaultConfig } from '@tamagui/config/v4';
 import { createTamagui } from 'tamagui';
-import { themes, tokens } from './themes';
+import { themes, tokens } from './themes/themes';
 
 const config = createTamagui({
   ...defaultConfig,
