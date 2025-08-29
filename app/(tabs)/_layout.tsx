@@ -1,43 +1,71 @@
+import { HapticTab } from '@/components/HapticTab';
+
+import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { getTokens, useTheme } from 'tamagui';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+
+  const tokens = getTokens();
+  const theme = useTheme();
+  const bgColor = theme.background.get()
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: tokens.color.$brand.val,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        // tabBarBackground: TabBarBackground,
+        // tabBarStyle: {
+        //   position: 'absolute',
+        // },
+        tabBarIconStyle: {
+          width: 24,
+          height: 24,
+          marginBottom: 2,
+        },
+        tabBarLabelStyle: {
+          fontSize: 10,
+          lineHeight: 12,
+        },
       }}>
       <Tabs.Screen
-        name="index"
+        name="message"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: '消息',
+          tabBarIcon: ({ color }) => <Ionicons name="chatbubble-ellipses-outline" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="contact"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: '通讯录',
+          tabBarIcon: ({ color }) => <Feather name="users" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="movie"
+        options={{
+          title: '视频',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="movie-filter-outline" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="discover"
+        options={{
+          title: '发现',
+          tabBarIcon: ({ color }) =><Feather name="compass" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="user"
+        options={{
+          title: '我的',
+          tabBarIcon: ({ color }) => <Ionicons name="person-circle-outline" size={24} color={color} />,
         }}
       />
     </Tabs>
