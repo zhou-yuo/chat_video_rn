@@ -1,4 +1,3 @@
-import { createTokens } from '@tamagui/core';
 
 export const color = {
   // 定义你的品牌色
@@ -79,21 +78,3 @@ export const light = {
   brandBackground: '#000', // You can add your own tokens like "brand"
   brandColor: color.brand, // and use them in your components
 }
-
-export const tokens = createTokens({
-  color,
-  radius: { 0: 0, 1: 3, 2: 5, 3: 10 },
-  space: { 0: 0, 1: 4, 2: 8, 3: 12, 4: 16 },
-  size: { 
-    small: 12,
-    medium: 14,
-    large: 18,
-    0: 10,
-    1: 12,
-    $true: 14,// $true 或默认大小通常被设置为这个值
-    3: 16, 
-    4: 18,
-    5: 20,
-  },
-})
-

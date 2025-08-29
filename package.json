@@ -11,12 +11,13 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.2.0",
     "@expo/vector-icons": "^14.1.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
-    "@tamagui/config": "^1.132.23",
-    "@tamagui/lucide-icons": "^1.132.23",
+    "@ui-kitten/components": "^5.3.1",
     "expo": "~53.0.22",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.7",
@@ -30,9 +31,10 @@
     "expo-symbols": "~0.4.5",
     "expo-system-ui": "~5.0.11",
     "expo-web-browser": "~14.2.0",
+    "lucide-react-native": "^0.542.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-native": "0.79.6",
+    "react-native": "0.79.5",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-reanimated-carousel": "^4.0.3",
@@ -42,7 +44,6 @@
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
-    "tamagui": "^1.132.23",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
