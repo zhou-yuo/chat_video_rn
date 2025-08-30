@@ -1,8 +1,6 @@
 import { HapticTab } from '@/components/HapticTab';
+import { Compass, MessageCircle, TvMinimalPlay, UserRound, UsersRound } from '@tamagui/lucide-icons';
 
-import Feather from '@expo/vector-icons/Feather';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { useTheme } from 'tamagui';
@@ -10,6 +8,7 @@ import { useTheme } from 'tamagui';
 export default function TabLayout() {
 
   const theme = useTheme();
+  console.log("🚀 ~ TabLayout ~ theme:", theme)
 
   return (
     <Tabs
@@ -35,35 +34,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: '消息',
-          tabBarIcon: ({ color }) => <Ionicons name="chatbubble-ellipses-outline" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => <MessageCircle size={24} color={ focused ? '$accentColor' : '$color' } />,
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: '通讯录',
-          tabBarIcon: ({ color }) => <Feather name="users" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => <UsersRound size={24} color={ focused ? '$accentColor' : '$color' }/>,
         }}
       />
       <Tabs.Screen
         name="movie"
         options={{
           title: '视频',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="movie-filter-outline" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => <TvMinimalPlay size={24} color={ focused ? '$accentColor' : '$color' } />,
         }}
       />
       <Tabs.Screen
         name="discover"
         options={{
           title: '发现',
-          tabBarIcon: ({ color }) =><Feather name="compass" size={24} color={color} />,
+          tabBarIcon: ({ focused }) =><Compass size={24} color={ focused ? '$accentColor' : '$color' } />,
         }}
       />
       <Tabs.Screen
         name="user"
         options={{
           title: '我的',
-          tabBarIcon: ({ color }) => <Ionicons name="person-circle-outline" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => <UserRound size={24} color={ focused ? '$accentColor' : '$color' } />,
         }}
       />
     </Tabs>
