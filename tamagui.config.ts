@@ -1,12 +1,10 @@
 import { defaultConfig } from '@tamagui/config/v4';
 import { createTamagui } from 'tamagui';
-import { themes, tokens } from './themes/themes';
+import { themes } from './themes/themes';
 
 const config = createTamagui({
   ...defaultConfig,
-  // fonts,
-  tokens,
-  themes
+  themes,
   // ... 其他配置, 如 media queries, shorthands
 })
 

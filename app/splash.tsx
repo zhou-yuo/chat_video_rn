@@ -4,15 +4,16 @@ import {
   Dimensions,
   Image,
   StyleSheet,
-  Text,
   TouchableOpacity,
-  View
 } from "react-native";
-import Carousel from "react-native-reanimated-carousel";
+import { Text, View } from "tamagui";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SwiperFlatList } from 'react-native-swiper-flatlist';
+
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
-const images = [
+const images: string[] = [
   "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
   "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1536&q=80",
   "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
@@ -56,23 +57,31 @@ function SplashScreen() {
   const renderItem = ({ item, index }: { item: string; index: number }) => {
     return (
       <View style={styles.itemContainer}>
-        <Image source={{ uri: item }} style={styles.image} resizeMode="cover" />
-      </View>
+            <Image source={{ uri: item }} style={styles.image} resizeMode="cover" />
+          </View>
     );
   };
 
   return (
     <View style={styles.container}>
       {/* 轮播图 */}
-      <Carousel
-        loop={true}
-        width={screenWidth}
-        height={screenHeight}
-        autoPlay={true}
-        data={images}
-        renderItem={renderItem}
+      <SwiperFlatList
+        autoplay
+        autoplayDelay={2}
+        autoplayLoop
+        showPagination
+        paginationDefaultColor="rgba(130, 130, 130, 0.5)"
+        paginationActiveColor="#fff"
+        paginationStyleItem={{
+          width: 14,
+          height: 8,
+          borderRadius: 4,
+        }}
+        data={ images }
+        renderItem={ renderItem }
       />
 
+      {/* 倒计时 */}
       <TouchableOpacity style={[ styles.enterBtn, { top: insets.top + 20 } ]} onPress={() => handleEnter()}>
         <View>
           <Text style={ styles.enterbtnText }>{ countDown > 0 ? `${countDown}s` : '进入' }</Text>

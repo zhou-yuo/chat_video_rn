@@ -1,6 +1,5 @@
 import * as Colors from "@tamagui/colors";
 import { createThemes, defaultComponentThemes } from "@tamagui/theme-builder";
-import { createTokens } from "tamagui";
 
 export const color = {
   // 定义你的品牌色
@@ -31,35 +30,6 @@ export const color = {
   purple: "#722ed1",
   cyan: "#13c2c2",
 };
-
-export const tokens = createTokens({
-  // color,
-  space: {
-    0: 0,
-    1: 2,
-    2: 4,
-    3: 8,
-    true: 2,
-    4: 12,
-    5: 16,
-  },
-  radius: {
-    0: 0,
-    1: 2,
-    true: 2,
-    2: 4,
-    3: 8,
-    4: 12,
-    5: 16,
-  },
-  zIndex: { 0: 0, 1: 100, true: 100, 2: 200, 3: 300, 4: 400, 5: 500 },
-  size: {
-    0: 12,
-    1: 14,
-    true: 14,
-    2: 18,
-  },
-});
 
 const darkPalette = [
   "hsla(0, 0%, 10%, 1)",
