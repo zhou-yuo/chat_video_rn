@@ -1,6 +1,5 @@
 import useCommonStore from "@/stores/useCommonStore";
 import tamaguiConfig from "@/tamagui.config"; // 你的 Tamagui 配置文件
-import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -20,14 +19,14 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const commonStore = useCommonStore();
 
-  const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  });
+  // const [loaded] = useFonts({
+  //   SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+  // });
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+  // if (!loaded) {
+  //   // Async font loading only occurs in development.
+  //   return null;
+  // }
 
   if (commonStore.isSplash) {
     return (

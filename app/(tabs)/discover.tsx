@@ -1,15 +1,25 @@
+import HomeNavBar from "@/components/ui/HomeNavBar";
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SizableText, YStack } from "tamagui";
 
 function DiscoverScreen() {
   return (
     <SafeAreaView>
-      <View style={{ flex: 1 }}>
-        <Text>DiscoverScreen</Text>
-      </View>
+      <HomeNavBar title="发现"></HomeNavBar>
+
+      <YStack style={styles.container} background="$background">
+        <SizableText>DiscoverScreen</SizableText>
+      </YStack>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default DiscoverScreen;

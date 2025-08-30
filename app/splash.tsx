@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { Text, View } from "tamagui";
+import { SizableText, View } from "tamagui";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
@@ -84,7 +84,7 @@ function SplashScreen() {
       {/* 倒计时 */}
       <TouchableOpacity style={[ styles.enterBtn, { top: insets.top + 20 } ]} onPress={() => handleEnter()}>
         <View>
-          <Text style={ styles.enterbtnText }>{ countDown > 0 ? `${countDown}s` : '进入' }</Text>
+          <SizableText color="#fff" size='$2' fontWeight={400}>{ countDown > 0 ? `${countDown}s` : '进入' }</SizableText>
         </View>
       </TouchableOpacity>
     </View>
@@ -114,10 +114,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "center",
     borderRadius: 12,
-  },
-  enterbtnText: {
-    color: "#fff",
-    fontSize: 12,
   },
 });
 

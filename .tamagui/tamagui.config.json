@@ -55205,22 +55205,6 @@
           "val": 48,
           "variable": "var(--c-size-4--5)"
         }
-      },
-      "fontWeights": {
-        "normal": {
-          "isVar": true,
-          "key": "$normal",
-          "name": "c-fontWeights-normal",
-          "val": 400,
-          "variable": "var(--c-fontWeights-normal)"
-        },
-        "bold": {
-          "isVar": true,
-          "key": "$bold",
-          "name": "c-fontWeights-bold",
-          "val": 700,
-          "variable": "var(--c-fontWeights-bold)"
-        }
       }
     },
     "selectionStyles": "Function",
@@ -56064,20 +56048,6 @@
         "name": "c-size-4--5",
         "val": 48,
         "variable": "var(--c-size-4--5)"
-      },
-      "$fontWeights.normal": {
-        "isVar": true,
-        "key": "$normal",
-        "name": "c-fontWeights-normal",
-        "val": 400,
-        "variable": "var(--c-fontWeights-normal)"
-      },
-      "$fontWeights.bold": {
-        "isVar": true,
-        "key": "$bold",
-        "name": "c-fontWeights-bold",
-        "val": 700,
-        "variable": "var(--c-fontWeights-bold)"
       }
     },
     "defaultFontToken": "$body"

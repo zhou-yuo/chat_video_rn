@@ -2344,16 +2344,7 @@ var themes2 = process.env.TAMAGUI_ENVIRONMENT === "client" && process.env.NODE_E
 // tamagui.config.ts
 var config = createTamagui({
   ...defaultConfig,
-  themes: themes2,
-  tokens: {
-    ...defaultConfig.tokens,
-    fontWeights: {
-      $normal: 400,
-      // 设定正常字体粗细
-      $bold: 700
-      // 设定加粗字体
-    }
-  }
+  themes: themes2
   // ... 其他配置, 如 media queries, shorthands
 });
 var tamagui_config_default = config;

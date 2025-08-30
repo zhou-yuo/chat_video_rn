@@ -8,7 +8,6 @@ import { useTheme } from 'tamagui';
 export default function TabLayout() {
 
   const theme = useTheme();
-  const background0 = theme.$background0?.get()
   console.log("🚀 ~ TabLayout ~ theme:", theme)
 
   return (
