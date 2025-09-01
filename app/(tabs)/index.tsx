@@ -1,3 +1,4 @@
+import ContactsListItem from '@/components/ui/contacts/ContactsListItem';
 import HomeNavBar from '@/components/ui/HomeNavBar';
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -5,7 +6,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { SizableText, YStack } from "tamagui";
 
 function MessageScreen() {
-
   return (
     <SafeAreaView style={ styles.container }>
       <HomeNavBar title="消息" ></HomeNavBar>
@@ -16,6 +16,8 @@ function MessageScreen() {
         <YStack bg="$background" p="$4">
           <SizableText color="$color">This is accent theme</SizableText>
         </YStack>
+
+        <ContactsListItem></ContactsListItem>
       </YStack>
     </SafeAreaView>
   );

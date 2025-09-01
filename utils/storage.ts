@@ -45,7 +45,6 @@ export async function removeItem(key: string): Promise<void> {
   }
 }
 
-
 export const platformAgnosticStorage: StateStorage = {
   setItem: (name: string, value: string): Promise<void> => {
     if (Platform.OS === 'web') {

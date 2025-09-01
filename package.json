@@ -47,7 +47,9 @@
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
     "tamagui": "^1.132.23",
-    "zustand": "^5.0.8"
+    "zustand": "^5.0.8",
+    "@shopify/flash-list": "1.7.6",
+    "expo-dev-client": "~5.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
