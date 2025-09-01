@@ -1,3 +1,4 @@
+import useAuthStore from "@/stores/useAuthStore";
 import useCommonStore from "@/stores/useCommonStore";
 import tamaguiConfig from "@/tamagui.config"; // 你的 Tamagui 配置文件
 import { Stack } from "expo-router";
@@ -13,49 +14,53 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
+import { ReactElement } from "react";
 import { useColorScheme } from "react-native";
+import LoginScreen from "./login";
 
-export default function RootLayout() {
+function RootWrapper({ children }: { children: ReactElement }) {
   const colorScheme = useColorScheme();
-  const commonStore = useCommonStore();
-
-  // const [loaded] = useFonts({
-  //   SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  // });
-
-  // if (!loaded) {
-  //   // Async font loading only occurs in development.
-  //   return null;
-  // }
-
-  if (commonStore.isSplash) {
-    return (
-      <GestureHandlerRootView>
-        <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>
-          <ThemeProvider
-            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-          >
-            <SplashScreen />
-            <StatusBar style="auto" />
-          </ThemeProvider>
-        </TamaguiProvider>
-      </GestureHandlerRootView>
-    );
-  }
 
   return (
     <GestureHandlerRootView>
       <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>
-         <ThemeProvider
-            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-          >
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          {children}
+          <StatusBar style="auto" />
         </ThemeProvider>
       </TamaguiProvider>
     </GestureHandlerRootView>
+  );
+}
+
+export default function RootLayout() {
+  const commonStore = useCommonStore();
+  const authStore = useAuthStore();
+
+  if (commonStore.isSplash) {
+    return (
+      <RootWrapper>
+        <SplashScreen />
+      </RootWrapper>
+    );
+  }
+
+  if (!authStore.isLogin) {
+    return (
+      <RootWrapper>
+        <LoginScreen />
+      </RootWrapper>
+    );
+  }
+
+  return (
+    <RootWrapper>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </RootWrapper>
   );
 }

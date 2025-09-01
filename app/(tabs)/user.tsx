@@ -1,13 +1,24 @@
+import useAuthStore from '@/stores/useAuthStore';
 import React from "react";
-import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Button, SizableText, YStack } from "tamagui";
 
 function UserScreen() {
+  const authStore = useAuthStore()
+  const userInfo = authStore.user;
+
+  const handleLogout = () => {
+    authStore.logout();
+  }
+
   return (
-    <SafeAreaView>
-      <View style={{ flex: 1 }}>
-        <Text>UserScreen</Text>
-      </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <YStack>
+        <SizableText>UserInfo</SizableText>
+        <SizableText fontWeight={400}>ID:{ userInfo && userInfo.id || '' }</SizableText>
+        <SizableText fontWeight={400}>Name:{ userInfo && userInfo.name || '' }</SizableText>
+        <Button onPress={() => handleLogout()}>Logout</Button>
+      </YStack>
     </SafeAreaView>
   );
 }
