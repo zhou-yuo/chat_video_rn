@@ -11,14 +11,6 @@ import Reanimated, {
 const actionsBtnSize = 50;
 
 function RightAction({ prog, drag, closeSwipeable }: { prog: SharedValue<number>, drag: SharedValue<number>, closeSwipeable: () => void }) {
-  const actionsItems : {
-    id: string,
-    name: string
-  }[] = [
-    { id: 'top', name: '置顶' },
-    { id: 'delete', name: '删除' },
-    { id: 'clear  ', name: '清空' },
-  ];
 
   const handleButtonPress = () => {
     closeSwipeable(); // Close the swipeable on button press
@@ -29,19 +21,21 @@ function RightAction({ prog, drag, closeSwipeable }: { prog: SharedValue<number>
     // console.log('appliedTranslation:', drag.value);
 
     return {
-      transform: [{ translateX: drag.value + 150 }],
+      transform: [{ translateX: drag.value + (actionsBtnSize * 3) }],
     };
   });
 
   return (
-    <View style={{ flexDirection: 'row', width: 150 }}>
-      {
-        actionsItems.map((item) => (
-          <Reanimated.View key={item.id} style={[styleAnimation, styles.activesBtn]}>
-            <Text style={styles.rightAction} onPress={handleButtonPress}>{ item.name }</Text>
-          </Reanimated.View>
-        ))
-      }
+    <View style={{ flexDirection: 'row', width: actionsBtnSize * 3 }}>
+      <Reanimated.View style={[styleAnimation, styles.activesBtn]}>
+        <Text style={styles.rightAction} onPress={handleButtonPress}>置顶</Text>
+      </Reanimated.View>
+      <Reanimated.View style={[styleAnimation, styles.activesBtn]}>
+        <Text style={styles.rightAction} onPress={handleButtonPress}>删除</Text>
+      </Reanimated.View>
+      <Reanimated.View style={[styleAnimation, styles.activesBtn]}>
+        <Text style={styles.rightAction} onPress={handleButtonPress}>清空</Text>
+      </Reanimated.View>
     </View>
   );
 }
