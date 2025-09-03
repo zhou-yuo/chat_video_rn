@@ -3,10 +3,16 @@ import { StyleSheet } from "react-native";
 import ReanimatedSwipeable, { SwipeableMethods } from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Text, View } from "tamagui";
 
+import { ContactsInfoType } from './types';
+
 import Reanimated, {
   SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
+
+interface PropsType {
+  userInfo: ContactsInfoType
+}
 
 const actionsBtnSize = 50;
 
@@ -40,7 +46,9 @@ function RightAction({ prog, drag, closeSwipeable }: { prog: SharedValue<number>
   );
 }
 
-function ContactsListItem() {
+function ContactsListItem(props: PropsType) {
+  const { userInfo } = props;
+  const { name } = userInfo || {};
   const swipeableRef = useRef<SwipeableMethods | null>(null);
 
   return (
@@ -55,7 +63,7 @@ function ContactsListItem() {
         (prog: SharedValue<number>, drag: SharedValue<number>) => <RightAction prog={prog} drag={drag} closeSwipeable={() => swipeableRef.current?.close()} />
       }
     >
-      <Text>Swipe me!</Text>
+      <Text>User {name ?? '--'}</Text>
     </ReanimatedSwipeable>
   );
 }

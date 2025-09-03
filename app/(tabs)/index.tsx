@@ -1,4 +1,4 @@
-import ContactsListItem from '@/components/ui/contacts/ContactsListItem';
+import ContactsList from '@/components/ui/contacts/ContactsList';
 import HomeNavBar from '@/components/ui/HomeNavBar';
 import TextTicker from '@/components/ui/TextTicker';
 import React from "react";
@@ -20,7 +20,7 @@ function MessageScreen() {
           <SizableText color="$accentColor">This is accent theme</SizableText>
         </YStack>
 
-        <ContactsListItem></ContactsListItem>
+        <ContactsList></ContactsList>
       </YStack>
     </SafeAreaView>
   );
