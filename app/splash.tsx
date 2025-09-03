@@ -22,7 +22,7 @@ const images: string[] = [
 function SplashScreen() {
   const { setIsSplash } = useCommonStore();
   const insets = useSafeAreaInsets()
-  const [countDown, setCountDown] = useState<number>(2);
+  const [countDown, setCountDown] = useState<number>(5);
 
   useEffect(() => {
     /**

@@ -1,37 +1,22 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require('expo/metro-config')
+const { getDefaultConfig } = require("expo/metro-config");
 
-/** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(__dirname, {
-  // [Web-only]: Enables CSS support in Metro.
-  isCSSEnabled: true,
-})
+const config = getDefaultConfig(__dirname);
 
-config.transformer = {
-  ...config.transformer,
-  babelTransformerPath: require.resolve('metro-react-native-babel-transformer'),
+config.resolver.unstable_enablePackageExports = true;
+
+
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+
+  if (moduleName === 'zustand' || moduleName.startsWith('zustand/')) {
+    //? Resolve to its CommonJS entry (fallback to main/index.js)
+    return {
+      type: 'sourceFile',
+      //? require.resolve will pick up the CJS entry (index.js) since "exports" is bypassed
+      filePath: require.resolve(moduleName),
+    };
+  }
+
+  return context.resolveRequest(context, moduleName, platform);
 };
 
-config.resolver = {
-  ...config.resolver,
-  unstable_enablePackageExports: true,
-  resolveRequest: (context, moduleName, platform) => {
-    if (moduleName.startsWith('zustand')) {
-      return {
-        filePath: require.resolve(moduleName, {
-          paths: [__dirname, './node_modules'],
-        }).replace('/dist/esm/', '/dist/cjs/'),
-        type: 'sourceFile',
-      };
-    }
-    return context.resolveRequest(context, moduleName, platform);
-  },
-};
-
-// add nice web support with optimizing compiler + CSS extraction
-const { withTamagui } = require('@tamagui/metro-plugin')
-module.exports = withTamagui(config, {
-  components: ['tamagui'],
-  config: './tamagui.config.ts',
-  outputCSS: './tamagui-web.css',
-})
+module.exports = config;
