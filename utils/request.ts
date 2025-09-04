@@ -1,6 +1,7 @@
 // src/utils/request.ts
 
 import { STORAGE_KEYS } from '@/constants/storageKeys';
+import { ApiResponse } from '@/types/common';
 import axios, {
   type AxiosError,
   type AxiosInstance,
@@ -9,22 +10,14 @@ import axios, {
 } from "axios";
 import { platformAgnosticStorage } from './storage';
 
-// 1. 定义后端返回数据的通用结构
-// T 是泛型，代表 data 字段中的具体数据类型
-export interface ApiResponse<T = any> {
-  code: number;
-  msg: string;
-  data: T;
-}
-
-// 2. 创建 Axios 实例
+// 创建 Axios 实例
 const service: AxiosInstance = axios.create({
   // 在这里设置您的基础 URL
   baseURL: "http://192.168.88.247:3000" + "/api/", // 请替换为您的 API 地址
   timeout: 10000, // 请求超时时间
 });
 
-// 3. 请求拦截器 (Request Interceptor)
+// 请求拦截器 (Request Interceptor)
 service.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     // 在发送请求前做些什么
@@ -55,13 +48,13 @@ service.interceptors.request.use(
   }
 );
 
-// 4. 响应拦截器 (Response Interceptor)
+// 响应拦截器 (Response Interceptor)
 service.interceptors.response.use(
   // response 的类型是 AxiosResponse<ApiResponse>，表示响应体是我们定义的 ApiResponse 结构
   (response: AxiosResponse<ApiResponse>) => {
     const res = response.data;
 
-    // 假设 code 为 200 表示成功，您可以根据后端接口的实际情况修改
+    // code 为 200 表示成功，您可以根据后端接口的实际情况修改
     if (res.code === 200) {
       // 如果成功，直接返回业务数据 (res.data)
       // 这里的类型将由调用 API 的函数决定
@@ -98,7 +91,7 @@ service.interceptors.response.use(
   }
 );
 
-// 5. 统一的错误码处理函数
+// 统一的错误码处理函数
 const handleErrorCode = (code: number, message: string): void => {
   switch (code) {
     case 401:
@@ -122,7 +115,7 @@ const handleErrorCode = (code: number, message: string): void => {
   }
 };
 
-// 6. 导出一个通用的请求函数，并为其添加泛型支持
+// 导出一个通用的请求函数，并为其添加泛型支持
 // 这个函数让我们可以直接指定 API 返回的数据类型，获得完整的类型提示
 const request = <T = any>(
   config: import("axios").AxiosRequestConfig
