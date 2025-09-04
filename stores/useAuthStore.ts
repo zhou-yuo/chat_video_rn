@@ -31,10 +31,12 @@ const useAuthStore = create<AuthStoreType>()(
       // Actions
       login: (token: string, user: UserType) => {
         set({ isLogin: true, token, user });
+        platformAgnosticStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, token);
       },
 
       logout: () => {
         set({ isLogin: false, token: null, user: null });
+        platformAgnosticStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
       },
 
       setUser: (user: UserType) => {
